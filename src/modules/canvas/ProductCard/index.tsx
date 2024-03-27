@@ -2,7 +2,7 @@ import { registerUniformComponent } from '@uniformdev/canvas-react';
 import { ProductCard } from './ProductCard';
 
 export type ProductCardProps = {
-  productImage: JSON;
+  imageUrl: string;
   price: string;
   name: string;
   color: string;

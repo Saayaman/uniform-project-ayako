@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { ProductCardProps } from '.';
 
-export const ProductCard: FC<ProductCardProps> = ({ id, price, name, color, href, productImage }) => {
+export const ProductCard: FC<ProductCardProps> = ({ id, price, name, color, href, imageUrl }) => {
   return (
     <div key={id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-        {!!productImage[0] ? (
+        {!!imageUrl ? (
           <img
-            alt={productImage[0].fields?.title?.value}
-            src={productImage[0].fields?.url?.value}
+            // alt={productImage[0].fields?.title?.value}
+            src={imageUrl}
             className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
         ) : null}

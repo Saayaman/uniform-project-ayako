@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { useFakeCartContext } from './FakeCartProvider';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 
 type Styles = {
@@ -14,10 +13,12 @@ export type Props = {
 };
 
 const CartIcon: FC<Props> = ({ link, styles }) => {
-  const { totalFakeCartItemsCount } = useFakeCartContext();
-  if (!link) {
-    return null;
-  }
+  // const { totalFakeCartItemsCount } = useFakeCartContext();
+  // if (!link) {
+  //   return null;
+  // }
+
+  const totalFakeCartItemsCount = 1;
 
   return (
     <Link
