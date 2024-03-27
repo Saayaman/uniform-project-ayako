@@ -16,7 +16,7 @@ declare namespace Types {
   type UniformImage = {
     id: string;
     url: string;
-    alt?: string,
+    alt?: string;
   };
 
   type ButtonStyles = 'primary' | 'secondary' | 'accent' | 'ghost' | 'link';

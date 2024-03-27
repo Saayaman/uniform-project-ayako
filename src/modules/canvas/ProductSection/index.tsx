@@ -10,4 +10,4 @@ registerUniformComponent({
   component: ProductSection,
 });
 
-export default ProductSection
+export default ProductSection;

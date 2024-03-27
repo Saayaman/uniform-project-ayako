@@ -1,4 +1,3 @@
-
 import './AddToCart';
 import './Banner';
 import './Breadcrumbs';
@@ -41,8 +40,7 @@ import './Video';
 import './ProductSection';
 import './ProductCard';
 
-
-export { default as ProductCard } from './ProductCard'
+export { default as ProductCard } from './ProductCard';
 
 export { default as AddToCart } from './AddToCart';
 export type { AddToCartProps } from './AddToCart';

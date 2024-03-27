@@ -10,8 +10,8 @@ export const Feature: FC<FeatureProps> = ({ icon, link }) => {
 
   const Wrapper = link?.path
     ? ({ children }: PropsWithChildren) => {
-      return <Link href={link?.path}>{children}</Link>;
-    }
+        return <Link href={link?.path}>{children}</Link>;
+      }
     : Fragment;
 
   return (

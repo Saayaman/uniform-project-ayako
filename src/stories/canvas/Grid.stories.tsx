@@ -95,24 +95,24 @@ const renderStoryWithColumnSpan = (args: GridProps) => {
       parameters: createUniformParameter(
         index === indexToInsertSpan
           ? {
-            columnSpan: '2',
-          }
+              columnSpan: '2',
+            }
           : {}
       ),
       slots: {
         inner: [
           index === indexToInsertSpan
             ? {
-              type: 'content',
-              parameters: createUniformParameter({
-                title: 'Example of a grid item that span 2 columns',
-                text: 'Use this paragraph to share information about your company or brand. Make it as engaging as possible.',
-              }),
-            }
+                type: 'content',
+                parameters: createUniformParameter({
+                  title: 'Example of a grid item that span 2 columns',
+                  text: 'Use this paragraph to share information about your company or brand. Make it as engaging as possible.',
+                }),
+              }
             : {
-              type: 'card',
-              parameters: createUniformParameter(card),
-            },
+                type: 'card',
+                parameters: createUniformParameter(card),
+              },
         ],
       },
     })),
@@ -131,24 +131,24 @@ const renderStoryWithRowSpan = (args: GridProps) => {
       parameters: createUniformParameter(
         index === indexToInsertSpan
           ? {
-            rowSpan: '2',
-          }
+              rowSpan: '2',
+            }
           : {}
       ),
       slots: {
         inner: [
           index === indexToInsertSpan
             ? {
-              type: 'content',
-              parameters: createUniformParameter({
-                title: 'Example of a grid item that span 2 rows',
-                text: 'Use this paragraph to share information about your company or brand. Make it as engaging as possible.',
-              }),
-            }
+                type: 'content',
+                parameters: createUniformParameter({
+                  title: 'Example of a grid item that span 2 rows',
+                  text: 'Use this paragraph to share information about your company or brand. Make it as engaging as possible.',
+                }),
+              }
             : {
-              type: 'card',
-              parameters: createUniformParameter(card),
-            },
+                type: 'card',
+                parameters: createUniformParameter(card),
+              },
         ],
       },
     })),

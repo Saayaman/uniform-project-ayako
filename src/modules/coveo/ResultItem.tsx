@@ -41,11 +41,11 @@ const ResultItem: FC<ResultItemProps> = ({ item, component }) => {
         // Emulate dynamic values for categories pages without dynamic input feature
         (buttonLink?.value
           ? {
-            ...(buttonLink?.value as Types.ProjectMapLink),
-            dynamicInputValues: {
-              'product-slug': item.raw.slug,
-            },
-          }
+              ...(buttonLink?.value as Types.ProjectMapLink),
+              dynamicInputValues: {
+                'product-slug': item.raw.slug,
+              },
+            }
           : undefined) as Types.ProjectMapLink | undefined
       }
       useCustomTextElements

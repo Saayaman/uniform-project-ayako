@@ -45,8 +45,9 @@ const App = ({
       return (
         <meta
           property="og:image"
-          content={`${VERCEL_URL}/api/og?title=${ogTitle ?? title?.replaceAll?.(' ', '%20')}&image=${openGraphImage.value
-            }`}
+          content={`${VERCEL_URL}/api/og?title=${ogTitle ?? title?.replaceAll?.(' ', '%20')}&image=${
+            openGraphImage.value
+          }`}
         />
       );
     }
@@ -58,8 +59,9 @@ const App = ({
       return (
         <meta
           property="twitter:image"
-          content={`${VERCEL_URL}/api/og?title=${twTitle ?? title?.replaceAll?.(' ', '%20')}&image=${twitterImage.value
-            }`}
+          content={`${VERCEL_URL}/api/og?title=${twTitle ?? title?.replaceAll?.(' ', '%20')}&image=${
+            twitterImage.value
+          }`}
         />
       );
     }

@@ -1,21 +1,17 @@
-import { FC } from "react";
-import { ProductCardProps } from ".";
+import { FC } from 'react';
+import { ProductCardProps } from '.';
 
-
-export const ProductCard: FC<ProductCardProps> = ({
-  id, price, name, color, href, productImage
-}) => {
+export const ProductCard: FC<ProductCardProps> = ({ id, price, name, color, href, productImage }) => {
   return (
     <div key={id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-        {!!productImage[0]
-          ? <img
+        {!!productImage[0] ? (
+          <img
             alt={productImage[0].fields?.title?.value}
             src={productImage[0].fields?.url?.value}
             className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
-          : null
-        }
+        ) : null}
       </div>
       <div className="mt-4 flex justify-between">
         <div>
@@ -30,5 +26,5 @@ export const ProductCard: FC<ProductCardProps> = ({
         <p className="text-sm font-medium text-gray-900">${price}</p>
       </div>
     </div>
-  )
-}
+  );
+};

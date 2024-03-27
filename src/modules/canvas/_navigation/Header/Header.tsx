@@ -1,15 +1,21 @@
 import { FC } from 'react';
 import classNames from 'classnames';
-import Image from 'next/image';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import Link from 'next/link';
 import { UniformSlot } from '@uniformdev/canvas-react';
-import { ScreenContainer } from '../../../../components/Container';
+// import { ScreenContainer } from '../../../../components/Container';
 import { getMediaUrl } from '../../../../utilities';
-import { getHeaderColor, getLinksAlignment } from './helpers';
+// import { getHeaderColor, getLinksAlignment } from './helpers';
 import { HeaderProps } from '.';
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { ArrowUpLeftIcon, Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment, useState } from 'react';
+import { Dialog, Tab, Transition } from '@headlessui/react';
+import {
+  // ArrowUpLeftIcon,
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  ShoppingBagIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 
 const navigation = {
   categories: [
@@ -132,12 +138,10 @@ const navigation = {
     { name: 'Company', href: '#' },
     { name: 'Stores', href: '#' },
   ],
-}
+};
 
-
-
-export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => {
-  const [open, setOpen] = useState(false)
+export const Header: FC<HeaderProps> = ({ logo }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     // <div className={classNames('text-primary-content', getHeaderColor(component.variant))}>
@@ -221,7 +225,7 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="-mb-px flex space-x-8 px-4">
-                      {navigation.categories.map((category) => (
+                      {navigation.categories.map(category => (
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
@@ -237,10 +241,10 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                     </Tab.List>
                   </div>
                   <Tab.Panels as={Fragment}>
-                    {navigation.categories.map((category) => (
+                    {navigation.categories.map(category => (
                       <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
                         <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item) => (
+                          {category.featured.map(item => (
                             <div key={item.name} className="group relative text-sm">
                               <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                 <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
@@ -255,7 +259,7 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                             </div>
                           ))}
                         </div>
-                        {category.sections.map((section) => (
+                        {category.sections.map(section => (
                           <div key={section.name}>
                             <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-gray-900">
                               {section.name}
@@ -265,7 +269,7 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                               aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
                               className="mt-6 flex flex-col space-y-6"
                             >
-                              {section.items.map((item) => (
+                              {section.items.map(item => (
                                 <li key={item.name} className="flow-root">
                                   <a href={item.href} className="-m-2 block p-2 text-gray-500">
                                     {item.name}
@@ -281,7 +285,7 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                 </Tab.Group>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  {navigation.pages.map((page) => (
+                  {navigation.pages.map(page => (
                     <div key={page.name} className="flow-root">
                       <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
                         {page.name}
@@ -357,7 +361,6 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
                 </ul>
               </div>
 
-
               <div className="ml-auto flex items-center">
                 {/* <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
@@ -395,5 +398,5 @@ export const Header: FC<HeaderProps> = ({ logo, component, linksAlignment }) => 
         </nav>
       </header>
     </div>
-  )
-}
+  );
+};

@@ -23,8 +23,8 @@ const documentToHtmlStringOptions: Options = {
 export const ContentBlock: FC<ContentBlockProps> = ({ titleStyle: TitleTag = 'h1', content = '', link, styles }) => {
   const Wrapper = link?.path
     ? ({ children }: PropsWithChildren) => {
-      return <Link href={link?.path}>{children}</Link>;
-    }
+        return <Link href={link?.path}>{children}</Link>;
+      }
     : Fragment;
 
   return (
