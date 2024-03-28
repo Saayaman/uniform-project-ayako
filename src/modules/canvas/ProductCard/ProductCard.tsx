@@ -7,8 +7,10 @@ export const ProductCard: FC<ProductCardProps> = ({ id, price, name, color, href
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
         {!!imageUrl ? (
           <img
+            width={40}
+            height={100}
             // alt={productImage[0].fields?.title?.value}
-            src={imageUrl}
+            src={`https:` + imageUrl}
             className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
         ) : null}
@@ -23,7 +25,7 @@ export const ProductCard: FC<ProductCardProps> = ({ id, price, name, color, href
           </h3>
           <p className="mt-1 text-sm text-gray-500">{color}</p>
         </div>
-        <p className="text-sm font-medium text-gray-900">${price}</p>
+        <p className="text-sm font-medium text-gray-900">{price}</p>
       </div>
     </div>
   );
