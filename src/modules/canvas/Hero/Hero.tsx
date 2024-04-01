@@ -1,119 +1,70 @@
 import { FC } from 'react';
-import classNames from 'classnames';
-import { Container, Description, EyebrowText, PrimaryButton, SecondaryButton, Title } from './atoms';
-import { useHeroAnimation } from './animation';
-import { AnimationVariant } from '../../../components/AnimatedContainer';
 import { HeroProps } from '.';
+import { UniformSlot } from '@uniformdev/canvas-react';
+import { formatProjectMapLink, getMediaUrl } from '@/utilities';
+import { Button } from '@/components';
+import classNames from 'classnames';
 
-export const HeroDefault: FC<HeroProps> = ({
+export const Hero: FC<HeroProps> = ({
   title,
-  titleStyle = 'h1',
   description,
-  primaryButtonLink,
-  primaryButtonStyle = 'primary',
-  primaryButtonAnimationType,
-  secondaryButtonLink,
-  secondaryButtonStyle = 'primary',
-  secondaryButtonAnimationType,
-  useCustomTextElements = false,
-  fullHeight,
-  animationType,
-  duration = 'medium',
-  animationOrder,
-  backgroundType,
-  containerVariant,
-  paddingBottom,
-  paddingTop,
-  marginBottom,
-  marginTop,
-  textColorVariant = 'Light',
-  animationPreview,
-  delay = 'none',
-  styles,
+  buttonText,
+  href,
+  image,
+  buttonStyle = 'primary',
+  fullWidth = true
 }) => {
-  const baseTextStyle = textColorVariant === 'Light' ? 'text-primary-content' : 'text-secondary-content';
 
-  const { ElementWrapper, getDelayValue } = useHeroAnimation({
-    duration,
-    animationOrder,
-    delay,
-    animationType,
-    animationPreview,
-  });
 
   return (
-    <Container
-      fullHeight={fullHeight}
-      className={baseTextStyle}
-      paddingBottom={paddingBottom}
-      paddingTop={paddingTop}
-      marginBottom={marginBottom}
-      marginTop={marginTop}
-      backgroundType={backgroundType}
-      containerVariant={containerVariant}
-    >
-      <div
-        className={classNames('hero-content text-center p-0', {
-          'h-full items-start pt-20': fullHeight,
-        })}
-      >
-        <div className={classNames('flex flex-col mx-1 md:mx-10 z-20')}>
-          <ElementWrapper
-            duration={duration}
-            delay={getDelayValue(0)}
-            animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
+    <div className={classNames("flex flex-col border-b border-gray-200 lg:border-0",
+      fullWidth && 'w-full'
+    )}>
+      <nav aria-label="Offers" className="order-last lg:order-first">
+        <div className="mx-auto rlg:px-8">
+          <ul
+            role="list"
+            className="grid grid-cols-1 divide-y divide-gray-200 lg:grid-cols-3 lg:divide-x lg:divide-y-0"
           >
-            <EyebrowText className={styles?.eyebrowText} />
-          </ElementWrapper>
-          <ElementWrapper
-            duration={duration}
-            delay={getDelayValue(1.5)}
-            animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
-          >
-            <Title
-              titleStyle={titleStyle}
-              useCustomTextElements={useCustomTextElements}
-              title={title}
-              className={styles?.title}
-            />
-          </ElementWrapper>
-          <ElementWrapper
-            duration={duration}
-            delay={getDelayValue(3)}
-            animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
-          >
-            <Description className={styles?.description} />
-          </ElementWrapper>
-          <div className={classNames('pb-6', { 'py-6': !description })}>
-            {Boolean(primaryButtonLink) && (
-              <ElementWrapper
-                duration={duration}
-                delay={getDelayValue(4.5)}
-                animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
-              >
-                <PrimaryButton
-                  animationType={primaryButtonAnimationType}
-                  primaryButtonLink={primaryButtonLink}
-                  primaryButtonStyle={primaryButtonStyle}
-                />
-              </ElementWrapper>
-            )}
-            {Boolean(secondaryButtonLink) && (
-              <ElementWrapper
-                duration={duration}
-                delay={getDelayValue(6)}
-                animationVariant={animationType === 'fadeIn' ? AnimationVariant.FadeIn : AnimationVariant.FadeInTop}
-              >
-                <SecondaryButton
-                  animationType={secondaryButtonAnimationType}
-                  secondaryButtonLink={secondaryButtonLink}
-                  secondaryButtonStyle={secondaryButtonStyle}
-                />
-              </ElementWrapper>
-            )}
+            <UniformSlot name="offers" />
+          </ul>
+        </div>
+      </nav>
+
+      <div className="relative">
+        <div aria-hidden="true" className="absolute hidden h-full w-1/2 bg-gray-100 lg:block" />
+        <div className="relative bg-gray-100 lg:bg-transparent">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2 lg:px-8">
+            <div className="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-64">
+              <div className="lg:pr-16">
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
+                  {title}
+                </h1>
+                <p className="mt-4 text-xl text-gray-600">
+                  {description}
+                </p>
+                <div className="mt-6">
+                  {href &&
+                    <Button
+                      className="mx-1"
+                      href={formatProjectMapLink(href)}
+                      copy={buttonText}
+                      style={buttonStyle}
+                    />
+                  }
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
+          <img
+            src={getMediaUrl(image[0].fields.url.value)}
+            // alt={image?.alt}
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
       </div>
-    </Container>
+    </div >
   );
 };

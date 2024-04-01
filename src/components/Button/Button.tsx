@@ -1,14 +1,12 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { getButtonAnimationClass, getButtonClass } from '../../utilities/styling';
 import { ButtonProps } from './';
 
-const Button: FC<ButtonProps> = ({ href, copy, style, className, onClick, disable = false, animationType }) => {
+const Button: FC<ButtonProps> = ({ href, copy, style, className, onClick, disable = false }) => {
   const buttonStyle = classNames(
-    'btn rounded-none',
+    'inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 font-medium text-white hover:bg-indigo-700',
     className,
-    animationType ? getButtonAnimationClass(style, animationType) : getButtonClass(style),
     {
       'btn-disabled': disable,
     }
