@@ -19,6 +19,14 @@ declare namespace Types {
     alt?: string;
   };
 
+  type UploadedImage = {
+    fields: {
+      url: {
+        value: string;
+      };
+    };
+  }[];
+
   type ButtonStyles = 'primary' | 'secondary' | 'accent' | 'ghost' | 'link';
 
   type BadgeStyles = 'primary' | 'secondary' | 'accent' | 'outline';

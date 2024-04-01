@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { HeroProps } from '.';
 import { UniformSlot } from '@uniformdev/canvas-react';
-import { formatProjectMapLink, getMediaUrl } from '@/utilities';
+import { formatProjectMapLink } from '@/utilities';
 import { Button } from '@/components';
 
 export const Hero: FC<HeroProps> = ({ title, description, buttonText, href, image, buttonStyle = 'primary' }) => {
