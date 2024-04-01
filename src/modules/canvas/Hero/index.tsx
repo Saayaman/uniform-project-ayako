@@ -7,7 +7,7 @@ export type HeroProps = {
   description: string;
   buttonText?: string;
   href?: Types.ProjectMapLink;
-  image?: Types.UniformImage;
+  image: any;
   buttonStyle?: Types.ButtonStyles;
 };
 

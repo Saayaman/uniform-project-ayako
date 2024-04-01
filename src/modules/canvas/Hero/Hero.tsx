@@ -37,7 +37,7 @@ export const Hero: FC<HeroProps> = ({ title, description, buttonText, href, imag
         </div>
         <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
           <img
-            src={getMediaUrl(image[0].fields.url.value)}
+            src={image[0].fields.url.value}
             // alt={image?.alt}
             className="h-full w-full object-cover object-center"
           />
