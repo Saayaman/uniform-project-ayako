@@ -7,12 +7,8 @@ export type HeroProps = {
   description: string;
   buttonText?: string;
   href?: Types.ProjectMapLink;
-  // imageUrl: string;
-  // imageAlt: string;
   image?: Types.UniformImage;
   buttonStyle?: Types.ButtonStyles;
-  fullWidth?: boolean;
-
 };
 
 export enum HeroVariant {
@@ -26,6 +22,5 @@ registerUniformComponent({
   type: 'hero',
   component: withoutContainer(Hero, true),
 });
-
 
 export default withoutContainer(Hero, true);

@@ -3,23 +3,10 @@ import { HeroProps } from '.';
 import { UniformSlot } from '@uniformdev/canvas-react';
 import { formatProjectMapLink, getMediaUrl } from '@/utilities';
 import { Button } from '@/components';
-import classNames from 'classnames';
 
-export const Hero: FC<HeroProps> = ({
-  title,
-  description,
-  buttonText,
-  href,
-  image,
-  buttonStyle = 'primary',
-  fullWidth = true
-}) => {
-
-
+export const Hero: FC<HeroProps> = ({ title, description, buttonText, href, image, buttonStyle = 'primary' }) => {
   return (
-    <div className={classNames("flex flex-col border-b border-gray-200 lg:border-0",
-      fullWidth && 'w-full'
-    )}>
+    <div className="flex flex-col border-b border-gray-200 lg:border-0">
       <nav aria-label="Offers" className="order-last lg:order-first">
         <div className="mx-auto rlg:px-8">
           <ul
@@ -37,21 +24,12 @@ export const Hero: FC<HeroProps> = ({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2 lg:px-8">
             <div className="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-64">
               <div className="lg:pr-16">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
-                  {title}
-                </h1>
-                <p className="mt-4 text-xl text-gray-600">
-                  {description}
-                </p>
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">{title}</h1>
+                <p className="mt-4 text-xl text-gray-600">{description}</p>
                 <div className="mt-6">
-                  {href &&
-                    <Button
-                      className="mx-1"
-                      href={formatProjectMapLink(href)}
-                      copy={buttonText}
-                      style={buttonStyle}
-                    />
-                  }
+                  {href && (
+                    <Button className="mx-1" href={formatProjectMapLink(href)} copy={buttonText} style={buttonStyle} />
+                  )}
                 </div>
               </div>
             </div>
@@ -65,6 +43,6 @@ export const Hero: FC<HeroProps> = ({
           />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
