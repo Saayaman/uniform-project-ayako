@@ -9,7 +9,6 @@ export type ProductOverviewProps = {
   size: string[];
   colors: string[];
   description: string;
-  imageUrl: string;
   images: Types.UniformImage[];
 };
 

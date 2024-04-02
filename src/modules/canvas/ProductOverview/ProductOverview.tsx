@@ -61,12 +61,11 @@ const product = {
 const ProductOverview: FC<ProductOverviewProps> = ({
   name,
   price,
-  id,
-  features,
-  size,
-  colors,
+  // id,
+  // features,
+  // size,
+  // colors,
   description,
-  imageUrl,
   images,
 }) => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
