@@ -39,6 +39,10 @@ import './Video';
 
 import './ProductSection';
 import './ProductCard';
+import './ProductOverview';
+
+export { default as ProductOverview } from './ProductOverview';
+export type { ProductOverviewProps } from './ProductOverview';
 
 export { default as ProductCard } from './ProductCard';
 
