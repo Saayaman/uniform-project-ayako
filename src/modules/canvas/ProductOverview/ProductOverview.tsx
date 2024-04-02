@@ -58,7 +58,7 @@ const product = {
   ],
 };
 
-const ProductOverview: FC<ProductOverviewProps> = (props) => {
+const ProductOverview: FC<ProductOverviewProps> = props => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   console.log('props', props);
 
@@ -71,7 +71,7 @@ const ProductOverview: FC<ProductOverviewProps> = (props) => {
     // colors,
     description,
     images,
-  } = props
+  } = props;
   return (
     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
       {/* Image gallery */}
