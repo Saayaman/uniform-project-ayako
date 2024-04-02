@@ -106,7 +106,7 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
         </div>
 
         <Tab.Panels className="aspect-h-1 aspect-w-1 w-full">
-          {images.map(image => (
+          {product.images.map(image => (
             <Tab.Panel key={image.id}>
               <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-center sm:rounded-lg" />
             </Tab.Panel>
