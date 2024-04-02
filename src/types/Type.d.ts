@@ -14,6 +14,7 @@ declare namespace Types {
   }[];
 
   type UniformImage = {
+    src: Key | null | undefined;
     id: string;
     url: string;
     alt?: string;
