@@ -13,8 +13,14 @@ declare namespace Types {
     src?: string;
   }[];
 
+  type CloudinaryImageList = {
+    url: string;
+    alt: string;
+    publicId: string;
+  };
+
   type UniformImage = {
-    src: Key | null | undefined;
+    src: string;
     id: string;
     url: string;
     alt?: string;

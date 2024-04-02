@@ -70,7 +70,7 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
     // size,
     // colors,
     description,
-    images,
+    images = [],
   } = props;
   console.log('images', images);
   return (
@@ -80,35 +80,36 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
         {/* Image selector */}
         <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
           <Tab.List className="grid grid-cols-4 gap-6">
-            {product.images.map(image => (
-              <Tab
-                key={image.src}
-                className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
-              >
-                {({ selected }) => (
-                  <>
-                    <span className="sr-only">{image.id}</span>
-                    <span className="absolute inset-0 overflow-hidden rounded-md">
-                      <img src={image.src} alt="" className="h-full w-full object-cover object-center" />
-                    </span>
-                    <span
-                      className={classNames(
-                        'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2',
-                        selected ? 'ring-indigo-500' : 'ring-transparent'
-                      )}
-                      aria-hidden="true"
-                    />
-                  </>
-                )}
-              </Tab>
-            ))}
+            {(!images || images.length > 0) &&
+              images.map((image: Types.CloudinaryImageList) => (
+                <Tab
+                  key={image.url}
+                  className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                >
+                  {({ selected }) => (
+                    <>
+                      <span className="sr-only">{image.publicId}</span>
+                      <span className="absolute inset-0 overflow-hidden rounded-md">
+                        <img src={image.url} alt="" className="h-full w-full object-cover object-center" />
+                      </span>
+                      <span
+                        className={classNames(
+                          'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2',
+                          selected ? 'ring-indigo-500' : 'ring-transparent'
+                        )}
+                        aria-hidden="true"
+                      />
+                    </>
+                  )}
+                </Tab>
+              ))}
           </Tab.List>
         </div>
 
         <Tab.Panels className="aspect-h-1 aspect-w-1 w-full">
-          {product.images.map(image => (
-            <Tab.Panel key={image.id}>
-              <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-center sm:rounded-lg" />
+          {images.map(image => (
+            <Tab.Panel key={image.publicId}>
+              <img src={image.url} alt={image.alt} className="h-full w-full object-cover object-center sm:rounded-lg" />
             </Tab.Panel>
           ))}
         </Tab.Panels>
