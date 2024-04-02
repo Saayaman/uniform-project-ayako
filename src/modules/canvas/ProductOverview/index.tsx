@@ -9,7 +9,7 @@ export type ProductOverviewProps = {
   size: string[];
   colors: string[];
   description: string;
-  images: Types.UniformImage[];
+  images: Types.CloudinaryImage[];
 };
 
 registerUniformComponent({

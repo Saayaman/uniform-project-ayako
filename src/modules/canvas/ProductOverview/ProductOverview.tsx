@@ -28,7 +28,7 @@ const product = {
     {
       id: 1,
       name: 'Angled view',
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
+      url: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
       alt: 'Angled front view with bag zipped and handles upright.',
     },
     // More images...
@@ -58,18 +58,20 @@ const product = {
   ],
 };
 
-const ProductOverview: FC<ProductOverviewProps> = ({
-  name,
-  price,
-  // id,
-  // features,
-  // size,
-  // colors,
-  description,
-  images,
-}) => {
+const ProductOverview: FC<ProductOverviewProps> = (props) => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  console.log('props', props);
 
+  const {
+    name,
+    price,
+    // id,
+    // features,
+    // size,
+    // colors,
+    description,
+    images,
+  } = props
   return (
     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
       {/* Image gallery */}
@@ -79,7 +81,7 @@ const ProductOverview: FC<ProductOverviewProps> = ({
           <Tab.List className="grid grid-cols-4 gap-6">
             {images.map(image => (
               <Tab
-                key={image.id}
+                key={image.url}
                 className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
               >
                 {({ selected }) => (
