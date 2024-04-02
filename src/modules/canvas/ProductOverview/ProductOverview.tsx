@@ -79,7 +79,7 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
         {/* Image selector */}
         <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
           <Tab.List className="grid grid-cols-4 gap-6">
-            {(images || []).map((image: Types.UniformImage, index) => (
+            {(images || []).map((image: Types.UniformImage) => (
               <Tab
                 key={image.src}
                 className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
