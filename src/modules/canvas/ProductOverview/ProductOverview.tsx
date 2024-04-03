@@ -16,46 +16,16 @@
 import { FC, useState } from 'react';
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react';
 import { StarIcon } from '@heroicons/react/20/solid';
-import { HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { ProductOverviewProps } from '.';
 
-const product = {
-  rating: 4,
-  details: [
-    {
-      name: 'Features',
-      items: [
-        'Multiple strap configurations',
-        'Spacious interior with top zip',
-        'Leather handle and tabs',
-        'Interior dividers',
-        'Stainless strap loops',
-        'Double stitched construction',
-        'Water-resistant',
-      ],
-    },
-    // More sections...
-  ],
-};
-
 const ProductOverview: FC<ProductOverviewProps> = props => {
-  const {
-    name,
-    price,
-    // id,
-    features,
-    // size,
-    colors,
-    description,
-    images = [],
-    details,
-  } = props;
+  const { name, price, id, colors, description, images = [], details = [], rating } = props;
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   console.log('props', props);
-  console.log('details', details);
-  console.log('features', features);
-  console.log('colors', colors);
+  console.log('id', id);
+
   return (
     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
       {/* Image gallery */}
@@ -112,18 +82,18 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
           <h3 className="sr-only">Reviews</h3>
           <div className="flex items-center">
             <div className="flex items-center">
-              {[0, 1, 2, 3, 4].map(rating => (
+              {[0, 1, 2, 3, 4].map(starRating => (
                 <StarIcon
-                  key={rating}
+                  key={starRating}
                   className={classNames(
-                    product.rating > rating ? 'text-indigo-500' : 'text-gray-300',
+                    rating > starRating ? 'text-indigo-500' : 'text-gray-300',
                     'h-5 w-5 flex-shrink-0'
                   )}
                   aria-hidden="true"
                 />
               ))}
             </div>
-            <p className="sr-only">{product.rating} out of 5 stars</p>
+            <p className="sr-only">{rating} out of 5 stars</p>
           </div>
         </div>
 
@@ -143,24 +113,24 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
               <span className="flex items-center space-x-3">
                 {colors.map((color: Types.Color) => (
                   <RadioGroup.Option
-                    key={color.name}
+                    key={color.fields.name.value}
                     value={color}
                     className={({ active, checked }) =>
                       classNames(
                         'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none',
-                        color.ringColor,
+                        color.fields.ringColor.value,
                         active && checked ? 'ring ring-offset-1' : '',
                         !active && checked ? 'ring-2' : ''
                       )
                     }
                   >
                     <RadioGroup.Label as="span" className="sr-only">
-                      {color.name}
+                      {color.fields.name.value}
                     </RadioGroup.Label>
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        color.bgColor,
+                        color.fields.bgColor.value,
                         'h-8 w-8 rounded-full border border-black border-opacity-10'
                       )}
                     />
@@ -177,14 +147,6 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
             >
               Add to bag
             </button>
-
-            <button
-              type="button"
-              className="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500"
-            >
-              <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-              <span className="sr-only">Add to favorites</span>
-            </button>
           </div>
         </form>
 
@@ -194,41 +156,44 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
           </h2>
 
           <div className="divide-y divide-gray-200 border-t">
-            {details.map(detail => (
-              <Disclosure as="div" key={detail.title}>
-                {({ open }) => (
-                  <>
-                    <h3>
-                      <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
-                        <span className={classNames(open ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-medium')}>
-                          {detail.title}
-                        </span>
-                        <span className="ml-6 flex items-center">
-                          {open ? (
-                            <MinusIcon
-                              className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <PlusIcon
-                              className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </span>
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel as="div" className="prose prose-sm pb-6">
-                      <ul role="list">
-                        {detail.items.map(item => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-            ))}
+            {details.length > 0 &&
+              details.map((detail: Types.ProductDetails) => (
+                <Disclosure as="div" key={detail.fields.title}>
+                  {({ open }) => (
+                    <>
+                      <h3>
+                        <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
+                          <span
+                            className={classNames(open ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-medium')}
+                          >
+                            {detail.fields.title}
+                          </span>
+                          <span className="ml-6 flex items-center">
+                            {open ? (
+                              <MinusIcon
+                                className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <PlusIcon
+                                className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </span>
+                        </Disclosure.Button>
+                      </h3>
+                      <Disclosure.Panel as="div" className="prose prose-sm pb-6">
+                        <ul role="list">
+                          {detail.fields.list.map(item => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+              ))}
           </div>
         </section>
       </div>

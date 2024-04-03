@@ -5,12 +5,12 @@ export type ProductOverviewProps = {
   name: string;
   price: string;
   id: string;
-  features: string[];
   size: string[];
   colors: Types.Color[];
   description: string;
   images?: Types.CloudinaryImageList[] | [];
-  details: Types.ProductDetails;
+  details: Types.ProductDetails[];
+  rating: number;
 };
 
 registerUniformComponent({
