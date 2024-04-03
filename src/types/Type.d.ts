@@ -1,4 +1,11 @@
 declare namespace Types {
+  type Color = {
+    name: string;
+    bgColor?: string;
+    ringColor?: string;
+    htmlColor?: string;
+  };
+
   type ProjectMapLink = {
     path: string;
     type?: string;
@@ -32,6 +39,11 @@ declare namespace Types {
         value: string;
       };
     };
+  }[];
+
+  type ProductDetails = {
+    title: string;
+    items: string[];
   }[];
 
   type ButtonStyles = 'primary' | 'secondary' | 'accent' | 'ghost' | 'link';

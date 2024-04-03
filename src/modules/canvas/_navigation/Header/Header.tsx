@@ -144,44 +144,6 @@ export const Header: FC<HeaderProps> = ({ logo }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    // <div className={classNames('text-primary-content', getHeaderColor(component.variant))}>
-    //   <ScreenContainer>
-    //     <div className="navbar px-0">
-    //       <div className="navbar-start w-full">
-    //         <div className="dropdown">
-    //           <label tabIndex={0} className="btn btn-ghost hover:bg-transparent px-0 lg:hidden">
-    //             <svg
-    //               xmlns="http://www.w3.org/2000/svg"
-    //               className="h-8 w-8"
-    //               fill="none"
-    //               viewBox="0 0 24 24"
-    //               stroke="currentColor"
-    //             >
-    //               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-    //             </svg>
-    //           </label>
-    //           <ul tabIndex={0} className="menu menu-compact dropdown-content p-2 shadow w-52 bg-base-300">
-    //             <div>
-    //               <UniformSlot name="links" />
-    //             </div>
-    //           </ul>
-    //         </div>
-    //         <Link className="ml-8 lg:ml-0" href="/">
-    //           <Image src={getMediaUrl(logo)} width="270" height="43" alt="Uniform" />
-    //         </Link>
-    //         <div className={classNames('hidden lg:flex w-full', getLinksAlignment(linksAlignment))}>
-    //           <ul className="menu menu-horizontal px-1 shrink-0">
-    //             <UniformSlot name="links" />
-    //           </ul>
-    //         </div>
-    //       </div>
-    //       <div className="hidden lg:flex">
-    //         <UniformSlot name="iconLinks" emptyPlaceholder={null} />
-    //       </div>
-    //     </div>
-    //   </ScreenContainer>
-    // </div>
-
     <div className="bg-white">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
@@ -325,7 +287,7 @@ export const Header: FC<HeaderProps> = ({ logo }) => {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Top" className="mx-auto max-w-7xl">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
               <button
@@ -348,29 +310,11 @@ export const Header: FC<HeaderProps> = ({ logo }) => {
 
               <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <ul className="flex h-full space-x-8">
-                  {/* {navigation.pages.map((page) => (
-                      <a
-                        key={page.name}
-                        href={page.href}
-                        className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                      >
-                        {page.name}
-                      </a>
-                    ))} */}
                   <UniformSlot name="links" />
                 </ul>
               </div>
 
               <div className="ml-auto flex items-center">
-                {/* <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
-                  </a>
-                </div> */}
                 <UniformSlot name="iconLinks" />
 
                 {/* Search */}

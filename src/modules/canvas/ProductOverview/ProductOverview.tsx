@@ -66,13 +66,15 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
     name,
     price,
     // id,
-    // features,
+    features,
     // size,
-    // colors,
+    colors,
     description,
     images = [],
+    details,
   } = props;
-  console.log('images', images);
+  console.log('features', features);
+  console.log('colors', colors);
   return (
     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
       {/* Image gallery */}
@@ -84,7 +86,7 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
               images.map((image: Types.CloudinaryImageList) => (
                 <Tab
                   key={image.url}
-                  className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                  className="relative flex h-28 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                 >
                   {({ selected }) => (
                     <>
@@ -158,14 +160,14 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
             <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
               <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
               <span className="flex items-center space-x-3">
-                {product.colors.map(color => (
+                {colors.map((color: Types.Color) => (
                   <RadioGroup.Option
                     key={color.name}
                     value={color}
                     className={({ active, checked }) =>
                       classNames(
                         'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none',
-                        color.selectedColor,
+                        color.ringColor,
                         active && checked ? 'ring ring-offset-1' : '',
                         !active && checked ? 'ring-2' : ''
                       )
@@ -211,14 +213,14 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
           </h2>
 
           <div className="divide-y divide-gray-200 border-t">
-            {product.details.map(detail => (
-              <Disclosure as="div" key={detail.name}>
+            {details.map(detail => (
+              <Disclosure as="div" key={detail.title}>
                 {({ open }) => (
                   <>
                     <h3>
                       <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
                         <span className={classNames(open ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-medium')}>
-                          {detail.name}
+                          {detail.title}
                         </span>
                         <span className="ml-6 flex items-center">
                           {open ? (

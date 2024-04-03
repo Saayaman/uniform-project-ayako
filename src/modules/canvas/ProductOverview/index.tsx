@@ -7,9 +7,10 @@ export type ProductOverviewProps = {
   id: string;
   features: string[];
   size: string[];
-  colors: string[];
+  colors: Types.Color[];
   description: string;
   images?: Types.CloudinaryImageList[] | [];
+  details: Types.ProductDetails;
 };
 
 registerUniformComponent({
