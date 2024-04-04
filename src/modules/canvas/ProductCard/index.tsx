@@ -7,7 +7,9 @@ export type ProductCardProps = {
   name: string;
   color: string;
   id: string;
-  href: string;
+  href: {
+    path: string;
+  }
 };
 
 registerUniformComponent({
