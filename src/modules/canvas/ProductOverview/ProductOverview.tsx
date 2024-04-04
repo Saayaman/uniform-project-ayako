@@ -1,28 +1,14 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-import { FC, useState } from 'react';
-import { Disclosure, RadioGroup, Tab } from '@headlessui/react';
+import { FC } from 'react';
+import { Disclosure, Tab } from '@headlessui/react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { ProductOverviewProps } from '.';
+import { getMediaUrl } from '@/utilities';
+import ProductColors from './ProductColors';
 
 const ProductOverview: FC<ProductOverviewProps> = props => {
-  const { name, price, id, colors, description, images = [], details = [], rating } = props;
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const { name, price, id, colors = [], description, images = [], details = [], rating } = props;
   console.log('props', props);
   console.log('id', id);
 
@@ -34,16 +20,20 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
         <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
           <Tab.List className="grid grid-cols-4 gap-6">
             {(!images || images.length > 0) &&
-              images.map((image: Types.CloudinaryImageList) => (
+              images.map((image: Types.ContentfulImage) => (
                 <Tab
-                  key={image.url}
+                  key={image.fields.fileName.value}
                   className="relative flex h-28 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                 >
                   {({ selected }) => (
                     <>
-                      <span className="sr-only">{image.publicId}</span>
+                      <span className="sr-only">{image.fields.fileName.value}</span>
                       <span className="absolute inset-0 overflow-hidden rounded-md">
-                        <img src={image.url} alt="" className="h-full w-full object-cover object-center" />
+                        <img
+                          src={getMediaUrl(image.fields.imageUrl.value)}
+                          alt=""
+                          className="h-full w-full object-cover object-center"
+                        />
                       </span>
                       <span
                         className={classNames(
@@ -61,8 +51,12 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
 
         <Tab.Panels className="aspect-h-1 aspect-w-1 w-full">
           {images.map(image => (
-            <Tab.Panel key={image.publicId}>
-              <img src={image.url} alt={image.alt} className="h-full w-full object-cover object-center sm:rounded-lg" />
+            <Tab.Panel key={image.fields.fileName.value}>
+              <img
+                src={getMediaUrl(image.fields.imageUrl.value)}
+                alt={'image'}
+                className="h-full w-full object-cover object-center sm:rounded-lg"
+              />
             </Tab.Panel>
           ))}
         </Tab.Panels>
@@ -104,42 +98,8 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
         </div>
 
         <form className="mt-6">
-          {/* Colors */}
-          <div>
-            <h3 className="text-sm text-gray-600">Color</h3>
-
-            <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
-              <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-              <span className="flex items-center space-x-3">
-                {colors.map((color: Types.Color) => (
-                  <RadioGroup.Option
-                    key={color.fields.name.value}
-                    value={color}
-                    className={({ active, checked }) =>
-                      classNames(
-                        'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none',
-                        color.fields.ringColor.value,
-                        active && checked ? 'ring ring-offset-1' : '',
-                        !active && checked ? 'ring-2' : ''
-                      )
-                    }
-                  >
-                    <RadioGroup.Label as="span" className="sr-only">
-                      {color.fields.name.value}
-                    </RadioGroup.Label>
-                    <span
-                      aria-hidden="true"
-                      className={classNames(
-                        color.fields.bgColor.value,
-                        'h-8 w-8 rounded-full border border-black border-opacity-10'
-                      )}
-                    />
-                  </RadioGroup.Option>
-                ))}
-              </span>
-            </RadioGroup>
-          </div>
-
+          {/* colors */}
+          {!!colors && colors.length > 0 && <ProductColors colors={colors} />}
           <div className="mt-10 flex">
             <button
               type="submit"
@@ -150,6 +110,7 @@ const ProductOverview: FC<ProductOverviewProps> = props => {
           </div>
         </form>
 
+        {/* Details */}
         <section aria-labelledby="details-heading" className="mt-12">
           <h2 id="details-heading" className="sr-only">
             Additional details

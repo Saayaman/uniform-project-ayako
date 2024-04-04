@@ -28,6 +28,17 @@ declare namespace Types {
     publicId: string;
   };
 
+  type ContentfulImage = {
+    fields: {
+      imageUrl: {
+        value: string;
+      };
+      fileName: {
+        value: string;
+      };
+    };
+  };
+
   type UniformImage = {
     src: string;
     id: string;
