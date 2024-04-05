@@ -1,6 +1,47 @@
 {
   "project": {
-    "pz": {},
+    "pz": {
+      "sig": {
+        "thirdvisitor": {
+          "str": 100,
+          "cap": 100,
+          "dur": "t",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "type": "PVC",
+                "match": {
+                  "op": "=",
+                  "rhs": 3
+                }
+              }
+            ]
+          }
+        },
+        "usVisitor": {
+          "str": 50,
+          "cap": 100,
+          "dur": "p",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "key": "vc-country",
+                "type": "QK",
+                "match": {
+                  "cs": false,
+                  "op": "=",
+                  "rhs": "us"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "test": {}
   }
 }
