@@ -1,13 +1,23 @@
 {
   "project": {
     "pz": {
+      "control": 10,
+      "agg": {
+        "visitorFromCanada": {
+          "inputs": [
+            {
+              "dim": "fromCanada"
+            }
+          ]
+        }
+      },
       "sig": {
         "fromCanada": {
-          "str": 100,
+          "str": 50,
           "cap": 100,
-          "dur": "p",
+          "dur": "s",
           "crit": {
-            "op": "&",
+            "op": "|",
             "type": "G",
             "clauses": [
               {
@@ -22,8 +32,48 @@
             ]
           }
         },
+        "genderWoman": {
+          "str": 50,
+          "cap": 100,
+          "dur": "p",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "type": "QS",
+                "match": {
+                  "cs": true,
+                  "op": "=",
+                  "rhs": "woman"
+                },
+                "queryName": "gender"
+              }
+            ]
+          }
+        },
+        "notFromCanada": {
+          "str": 50,
+          "cap": 100,
+          "dur": "s",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "key": "vc-country",
+                "type": "QK",
+                "match": {
+                  "cs": false,
+                  "op": "!=",
+                  "rhs": "ca"
+                }
+              }
+            ]
+          }
+        },
         "thirdvisitor": {
-          "str": 100,
+          "str": 50,
           "cap": 100,
           "dur": "t",
           "crit": {
