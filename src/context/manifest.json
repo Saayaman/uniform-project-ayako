@@ -2,6 +2,26 @@
   "project": {
     "pz": {
       "sig": {
+        "fromCanada": {
+          "str": 100,
+          "cap": 100,
+          "dur": "p",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "key": "vc-country",
+                "type": "QK",
+                "match": {
+                  "cs": false,
+                  "op": "=",
+                  "rhs": "ca"
+                }
+              }
+            ]
+          }
+        },
         "thirdvisitor": {
           "str": 100,
           "cap": 100,
