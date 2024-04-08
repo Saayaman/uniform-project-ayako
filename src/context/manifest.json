@@ -26,7 +26,7 @@
                 "match": {
                   "cs": false,
                   "op": "=",
-                  "rhs": "ca"
+                  "rhs": "CA"
                 }
               }
             ]
