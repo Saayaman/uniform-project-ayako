@@ -22,6 +22,13 @@ declare namespace Types {
     src?: string;
   }[];
 
+  type SearchItem = {
+    name: string;
+    product: string;
+    objectId: string;
+    [key: string]: string;
+  };
+
   type CloudinaryImageList = {
     url: string;
     alt: string;

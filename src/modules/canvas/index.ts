@@ -40,6 +40,10 @@ import './Video';
 import './ProductSection';
 import './ProductCard';
 import './ProductOverview';
+import './SearchBar';
+
+export { default as SearchBar } from './SearchBar';
+export type { SearchBarProps } from './SearchBar';
 
 export { default as ProductOverview } from './ProductOverview';
 export type { ProductOverviewProps } from './ProductOverview';

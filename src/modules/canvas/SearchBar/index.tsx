@@ -2,7 +2,7 @@ import { registerUniformComponent } from '@uniformdev/canvas-react';
 import SearchBar from './SearchBar';
 
 export type SearchBarProps = {
-  searchInfo: Types.CloudinaryImage;
+  searchItems: Types.SearchItem[] | [];
 };
 
 registerUniformComponent({
